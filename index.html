@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>    
+    <title>Frase con nombre y apellido, y años de vida </title>
+</head>
+<body>
+    <h1>Ingresa los datos que se te piden a continuacion</h1>
+
+    <!-- estos son los input donde copturo los datos para resolver el algoritmo -->
+    <!-- input para capturar el nombre -->
+    <span>escriba su nombre</span>
+    <input type="text" name="name" id="name">
+    <br>
+    
+    <!-- input para capturar el apellido -->
+    <span>escriba su Apellido</span>
+    <input type="text" name="lastName" id="lastName">
+    <br>
+
+    <!-- input para capturar el año de nacimiento -->
+    <span>indique su año de nacimiento</span>
+    <input type="number" name="year" id="year">
+    <br>
+
+    <!-- este boton llama a la funcion que necisto ejecutar -->
+    <input type="button" value="Ver Frase" onclick="mostrar()" >
+    
+    <!-- aca mostrare el resultado de la función mostrar -->
+    <span>Frase</span>
+    <input type="text" name="frase" id="frase" size="75">
+
+    <script>
+        function mostrar( ){
+
+            // leo los inputs del html y los almaceno en variables de javascript 
+            year = document.getElementById('year').value
+            name = document.getElementById('name').value
+            lastName = document.getElementById('lastName').value
+
+            //realizo el calculo de los años de vida
+            actualYear = 2021
+            old = actualYear - year
+
+            //valido si dejo en blanco el nombre
+            if(name == ''){
+                name = 'SIN NOMBRE'
+            }
+            
+            //valido si dejo en blanco el apellido
+            if(lastName == ''){
+                lastName = 'SIN APELLIDO'
+            }
+
+            //forma la frase a mostrar
+            frase = 'Tu nombre es ' + name + ', y tu apellido es ' + lastName + ' tienes ' + old + ' años de vida'
+            
+            //envio la frase al input frase
+            document.getElementById('frase').value = frase
+            
+        }
+
+    </script>
+
+</body>
+</html>
