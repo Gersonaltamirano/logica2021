@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    
+    <title>Calculadora</title>
+</head>
+<body>
+    
+    <a href="/">
+        <button>ir al Home</button>
+    </a>
+
+    <h1 >Bienvenido a la Calculadora UMG</h1>
+    <span id='sisOp'></span>
+
+    <p>
+        Escribe 2 valores y presiona la operacion que quieres resolver
+    </p>
+
+    <input type="number" placeholder="Ingresa un numero" id="num1"><br>
+    <input type="number" placeholder="Ingresa otro numero" id="num2"><br>
+    <!-- este boton llama a la funcion que necisto ejecutar -->
+    <input type="button" value="SUMAR" onclick="suma()" >
+    <input type="button" value="RESTAR" onclick="resta()" >
+    <input type="button" value="MULTIPLICAR" onclick="multiplica()" >
+    <input type="button" value="DIVIDIR" onclick="divide()" >
+    <br><br>
+
+    <p>
+        Abajo se mostrara el resultado
+    </p>
+    <span name="resultado" id="resultado" size="75" ></span>
+
+    <script>
+
+        function datos(){
+            num1 = parseFloat(document.getElementById('num1').value)
+            num2 = parseFloat(document.getElementById('num2').value)
+
+            if(isNaN(num1)){
+                num1 = 0
+            }
+
+            if(isNaN(num2)){
+                num2 = 0
+            }
+        }
+
+        function corregir(){
+            if(isNaN(resultado)){
+                resultado = 'No se puede obtener el resultado con los valores ingresados'
+
+                document.getElementById('resultado').textContent = resultado
+            }
+        }
+        
+        function suma(){
+            datos()
+            resultado = num1 + num2
+            document.getElementById('resultado').textContent = resultado
+
+            corregir()
+        }
+
+        function resta(){
+            datos()
+            resultado = num1 - num2
+            document.getElementById('resultado').textContent = resultado
+
+            corregir()
+        }
+
+        function multiplica(){
+            datos()
+            resultado = num1 * num2
+            document.getElementById('resultado').textContent = resultado
+
+            corregir()
+        }
+
+        function divide(){
+            datos()
+            resultado = num1 / num2
+            document.getElementById('resultado').textContent = resultado
+
+            corregir()
+        }
+
+        contador = 0
+
+        function eventClic(){
+            contador = contador + 1
+            document.getElementById('resultado').textContent = contador
+
+            retornarSO()
+        }
+
+        document.addEventListener('click', eventClic)
+
+        var navInfo = window.navigator.appVersion.toLowerCase();
+        var so = 'Sistema Operativo';
+        function retornarSO(){
+            if(navInfo.indexOf('win') != -1)
+            {
+                so = 'Windows';
+            }
+            else if(navInfo.indexOf('linux') != -1)
+            {
+                so = 'Linux';
+            }
+            else if(navInfo.indexOf('mac') != -1)
+            {
+                so = 'Macintosh';
+            }
+            document.getElementById('sisOp').textContent = so
+        }
+
+
+
+
+    </script>
+
+    
+</body>
+</html>
