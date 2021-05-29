@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Uso de Array</title>
+</head>
+<body>
+    <a href="/">
+        <button>ir al Home</button>
+    </a>
+    <br>
+    <h1>Ejemplos con Array</h1>
+
+    <input type="text" name="dato" id="dato" size="75"><br>
+    <input type="button" value="Agregar elemento" onclick="agregar()">
+    <input type="button" value="Quitar Ultimo elemento" onclick="eliminarUltimo()">
+    <input type="button" value="Editar Ultimo elemento" onclick="editarUltimo()"><br><br>
+
+    <input type="number" name="pos" id="pos" size="15" min="0" max="0"><br>
+    <input type="button" value="Eliminar Linea " onclick="eliminarEspecifico()"><br><br>
+
+
+    <textarea id='resultado' rows="10" cols="75" readonly> 
+
+    </textarea>
+
+    <script>
+
+        lista = [];
+
+        function agregar(){
+            leer();
+            lista.push(dato);
+            resultadoFinal = "";
+
+            lista.forEach(function(elemento, indice, array) {
+                i = parseInt(indice) + 1;
+                resultadoFinal = resultadoFinal + i + ' ' + elemento + '\n';
+            })
+            
+            document.getElementById('resultado').value = resultadoFinal;
+
+            document.getElementById('pos').max = lista.length;
+            
+            if(lista.length >= 0 ){
+                document.getElementById('pos').min = 0;
+            }
+            else{
+               document.getElementById('pos').min = 1;
+            }
+
+
+        }
+
+        function eliminarUltimo(){
+            lista.pop();
+
+            resultadoFinal = ''
+
+            lista.forEach(function(elemento, indice, array) {
+                i = parseInt(indice) + 1
+                resultadoFinal = resultadoFinal + i + ' ' + elemento + '\n'
+            })
+
+            document.getElementById('resultado').value = resultadoFinal
+
+            document.getElementById('pos').max = lista.length;
+
+            if(lista.length >= 0){
+                document.getElementById('pos').min = 0;
+            }else{
+                document.getElementById('pos').min = 1;
+            }
+        }
+
+        function eliminarEspecifico(){
+
+            pos = document.getElementById('pos').value - 1;
+
+            lista.splice(pos, 1);
+
+            resultadoFinal = ''
+
+            lista.forEach(function(elemento, indice, array) {
+                i = parseInt(indice) + 1
+                resultadoFinal = resultadoFinal + i + ' ' + elemento + '\n'
+            })
+
+            document.getElementById('resultado').value = resultadoFinal
+
+            document.getElementById('pos').max = lista.length;
+
+            if(lista.length >= 0){
+                document.getElementById('pos').min = 0;
+            }else{
+                document.getElementById('pos').min = 1;
+            }
+
+            document.getElementById('pos').value = ''
+        }
+        
+        function leer(){
+            dato = document.getElementById('dato').value
+            document.getElementById('dato').value = ''
+        }
+        
+        function editarUltimo(){
+            edit = lista[lista.length - 1]
+            lista.pop();
+            resultadoFinal = ''
+            lista.forEach(function(item, indice, array) {
+                i = parseInt(indice) + 1
+                resultadoFinal = resultadoFinal + i + ' ' + item + '\n'
+            })
+
+            document.getElementById('resultado').value = resultadoFinal
+            document.getElementById('dato').value = edit
+
+            document.getElementById('pos').max = lista.length;
+
+            if(lista.length >= 0){
+                document.getElementById('pos').min = 0;
+            }else{
+                document.getElementById('pos').min = 1;
+            }
+        }
+    </script>
+    
+</body>
+</html>
